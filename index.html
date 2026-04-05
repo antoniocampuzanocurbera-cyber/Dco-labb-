@@ -1,91 +1,299 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCO LABB</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>DCO LABB</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d0d0d;
-  color: white;
-}
+  <meta name="theme-color" content="#0b0b0f" />
+  <meta name="description" content="Panel inteligente de DCO LABB" />
+  <link rel="manifest" href="manifest.json" />
 
-.container {
-  padding: 20px;
-}
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --card: #15161b;
+      --card-2: #1b1d23;
+      --text: #f4f1ea;
+      --muted: #9a9aa3;
+      --gold: #c7a86b;
+      --line: rgba(255,255,255,0.06);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 22px;
+    }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 28px;
-}
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.card {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    html, body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top, rgba(199,168,107,0.08), transparent 28%),
+        linear-gradient(180deg, #0a0a0d 0%, #0b0b0f 100%);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      min-height: 100%;
+    }
 
-.card:hover {
-  background: #262626;
-}
+    body {
+      padding: 18px 16px 28px;
+    }
 
-.title {
-  font-size: 18px;
-  font-weight: bold;
-}
+    .app {
+      max-width: 520px;
+      margin: 0 auto;
+    }
 
-.desc {
-  font-size: 14px;
-  color: #aaa;
-}
-</style>
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-mini {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--gold);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .hero {
+      padding: 18px 6px 8px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin: 0;
+    }
+
+    .logo .gold {
+      color: var(--gold);
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 26px 4px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .card {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .card:active {
+      transform: scale(0.985);
+    }
+
+    .icon-wrap {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      flex: 0 0 auto;
+    }
+
+    .gold-box { background: rgba(199,168,107,0.08); }
+    .pink-box { background: rgba(180,90,130,0.10); }
+    .green-box { background: rgba(70,140,110,0.12); }
+    .purple-box { background: rgba(120,90,180,0.12); }
+    .blue-box { background: rgba(70,110,180,0.12); }
+
+    .card-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .arrow {
+      color: var(--gold);
+      font-size: 22px;
+      opacity: 0.9;
+      margin-left: 8px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: #6f7078;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    .install-box {
+      margin-top: 24px;
+      border: 1px dashed rgba(199,168,107,0.35);
+      border-radius: 18px;
+      padding: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .install-btn {
+      margin-top: 12px;
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: var(--gold);
+      color: #111;
+      font-weight: 700;
+      font-size: 15px;
+      display: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="app">
+    <div class="topbar">
+      <div class="brand-mini">DCO LABB</div>
+      <div class="badge">AGENTE IA</div>
+    </div>
 
-<div class="container">
-  <h1>DCO LABB</h1>
+    <div class="hero">
+      <h1 class="logo">DCO <span class="gold">LABB</span></h1>
+      <div class="subtitle">Selecciona tu perfil</div>
+    </div>
 
-  <div class="card" onclick="openGPT('Quiero hacer un presupuesto')">
-    <div class="title">📋 Presupuestos</div>
-    <div class="desc">Crear presupuestos rápidos</div>
+    <div class="section-title">Accesos rápidos</div>
+
+    <div class="card" onclick="openGPT('Quiero hacer un presupuesto profesional para un cliente. Hazme preguntas y ayúdame a prepararlo.')">
+      <div class="icon-wrap gold-box">📋</div>
+      <div class="card-text">
+        <div class="card-title">Presupuestos</div>
+        <div class="card-desc">Genera presupuestos profesionales al instante</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <div class="card" onclick="openGPT('Necesito responder un DM de Instagram con el tono de DCO LABB. Ayúdame a redactarlo.')">
+      <div class="icon-wrap pink-box">📱</div>
+      <div class="card-text">
+        <div class="card-title">DMs Instagram</div>
+        <div class="card-desc">Responde mensajes con el tono de DCO LABB</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <div class="card" onclick="openGPT('Quiero controlar inventario y stock de piezas. Ayúdame a organizarlo.')">
+      <div class="icon-wrap green-box">📦</div>
+      <div class="card-text">
+        <div class="card-title">Inventario</div>
+        <div class="card-desc">Controla stock y materiales del taller</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <div class="card" onclick="openGPT('Crea copies para redes sociales de DCO LABB para Instagram y TikTok.')">
+      <div class="icon-wrap purple-box">✍️</div>
+      <div class="card-text">
+        <div class="card-title">Copies Redes</div>
+        <div class="card-desc">Textos para Instagram, TikTok y promociones</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <div class="card" onclick="openGPT('Quiero hacer seguimiento de clientes, pedidos y leads. Ayúdame a organizarlo.')">
+      <div class="icon-wrap blue-box">👥</div>
+      <div class="card-text">
+        <div class="card-title">Seguimiento</div>
+        <div class="card-desc">Seguimiento de clientes, pedidos y oportunidades</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <div class="install-box">
+      Para usarlo como app en Android, añádelo a tu pantalla de inicio.
+      <button id="installBtn" class="install-btn">Instalar app</button>
+    </div>
+
+    <div class="footer">
+      DCO LABB S.L.
+    </div>
   </div>
 
-  <div class="card" onclick="openGPT('Responder mensajes de Instagram')">
-    <div class="title">📱 DMs Instagram</div>
-    <div class="desc">Respuestas automáticas</div>
-  </div>
+  <script>
+    function openGPT(texto) {
+      const base = "https://chatgpt.com/g/g-69d2593629108191a34194b79c907a62-dco-eavv";
+      const url = base + "?q=" + encodeURIComponent(texto);
+      window.location.href = url;
+    }
 
-  <div class="card" onclick="openGPT('Controlar inventario')">
-    <div class="title">📦 Inventario</div>
-    <div class="desc">Gestión de stock</div>
-  </div>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
 
-  <div class="card" onclick="openGPT('Crear textos para redes')">
-    <div class="title">✍️ Copies Redes</div>
-    <div class="desc">Contenido para redes</div>
-  </div>
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
 
-  <div class="card" onclick="openGPT('Seguimiento de clientes')">
-    <div class="title">👥 Seguimiento</div>
-    <div class="desc">Clientes y pedidos</div>
-  </div>
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'block';
+    });
 
-</div>
-
-<script>
-function openGPT(texto) {
-  const url = "https://chatgpt.com/g/g-69d2593629108191a34194b79c907a62-dco-eavv?q=" + encodeURIComponent(texto);
-  window.location.href = url;
-}
-</script>
-
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
