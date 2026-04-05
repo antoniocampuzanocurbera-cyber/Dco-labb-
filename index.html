@@ -3,21 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DCO Asistente</title>
+<title>DCO LABB</title>
 
-<meta http-equiv="refresh" content="0; url=https://chatgpt.com/g/g-69d2593629108191a34194b79c907a62-dco-eavv">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: white;
+}
 
+.container {
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card:hover {
+  background: #262626;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.desc {
+  font-size: 14px;
+  color: #aaa;
+}
+</style>
 </head>
 
-<body style="margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#111;color:white;font-family:Arial;">
+<body>
 
-<div style="text-align:center;">
-<h1>Abriendo DCO Asistente...</h1>
+<div class="container">
+  <h1>DCO LABB</h1>
 
-<a href="https://chatgpt.com/g/g-69d2593629108191a34194b79c907a62-dco-eavv" style="color:#00ffcc;">
-Si no se abre, pulsa aquí
-</a>
+  <div class="card" onclick="openGPT('Quiero hacer un presupuesto')">
+    <div class="title">📋 Presupuestos</div>
+    <div class="desc">Crear presupuestos rápidos</div>
+  </div>
+
+  <div class="card" onclick="openGPT('Responder mensajes de Instagram')">
+    <div class="title">📱 DMs Instagram</div>
+    <div class="desc">Respuestas automáticas</div>
+  </div>
+
+  <div class="card" onclick="openGPT('Controlar inventario')">
+    <div class="title">📦 Inventario</div>
+    <div class="desc">Gestión de stock</div>
+  </div>
+
+  <div class="card" onclick="openGPT('Crear textos para redes')">
+    <div class="title">✍️ Copies Redes</div>
+    <div class="desc">Contenido para redes</div>
+  </div>
+
+  <div class="card" onclick="openGPT('Seguimiento de clientes')">
+    <div class="title">👥 Seguimiento</div>
+    <div class="desc">Clientes y pedidos</div>
+  </div>
+
 </div>
+
+<script>
+function openGPT(texto) {
+  const url = "https://chatgpt.com/g/g-69d2593629108191a34194b79c907a62-dco-eavv?q=" + encodeURIComponent(texto);
+  window.location.href = url;
+}
+</script>
 
 </body>
 </html>
