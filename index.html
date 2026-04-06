@@ -47,6 +47,10 @@
       margin: 0 auto;
     }
 
+    .hidden {
+      display: none;
+    }
+
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -102,6 +106,19 @@
       color: var(--muted);
       letter-spacing: 0.14em;
       text-transform: uppercase;
+    }
+
+    .screen-title {
+      margin: 8px 4px 18px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .screen-subtitle {
+      margin: -6px 4px 18px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
     .card {
@@ -164,6 +181,19 @@
       margin-left: 8px;
     }
 
+    .back-btn {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      cursor: pointer;
+    }
+
     .footer {
       margin-top: 28px;
       text-align: center;
@@ -200,71 +230,156 @@
 </head>
 <body>
   <div class="app">
-    <div class="topbar">
-      <div class="brand-mini">DCO LABB</div>
-      <div class="badge">AGENTE IA</div>
-    </div>
 
-    <div class="hero">
-      <h1 class="logo">DCO <span class="gold">LABB</span></h1>
-      <div class="subtitle">Selecciona tu perfil</div>
-    </div>
-
-    <div class="section-title">Accesos rápidos</div>
-
-    <div class="card" onclick="openGPT('Quiero hacer un presupuesto profesional para un cliente. Hazme preguntas y ayúdame a prepararlo.')">
-      <div class="icon-wrap gold-box">📋</div>
-      <div class="card-text">
-        <div class="card-title">Presupuestos</div>
-        <div class="card-desc">Genera presupuestos profesionales al instante</div>
+    <!-- HOME -->
+    <div id="homeScreen">
+      <div class="topbar">
+        <div class="brand-mini">DCO LABB</div>
+        <div class="badge">AGENTE IA</div>
       </div>
-      <div class="arrow">›</div>
-    </div>
 
-    <div class="card" onclick="openGPT('Necesito responder un DM de Instagram con el tono de DCO LABB. Ayúdame a redactarlo.')">
-      <div class="icon-wrap pink-box">📱</div>
-      <div class="card-text">
-        <div class="card-title">DMs Instagram</div>
-        <div class="card-desc">Responde mensajes con el tono de DCO LABB</div>
+      <div class="hero">
+        <h1 class="logo">DCO <span class="gold">LABB</span></h1>
+        <div class="subtitle">Selecciona tu perfil</div>
       </div>
-      <div class="arrow">›</div>
-    </div>
 
-    <div class="card" onclick="openGPT('Quiero controlar inventario y stock de piezas. Ayúdame a organizarlo.')">
-      <div class="icon-wrap green-box">📦</div>
-      <div class="card-text">
-        <div class="card-title">Inventario</div>
-        <div class="card-desc">Controla stock y materiales del taller</div>
+      <div class="section-title">Accesos rápidos</div>
+
+      <div class="card" onclick="showScreen('presupuestosScreen')">
+        <div class="icon-wrap gold-box">📋</div>
+        <div class="card-text">
+          <div class="card-title">Presupuestos</div>
+          <div class="card-desc">Genera presupuestos profesionales al instante</div>
+        </div>
+        <div class="arrow">›</div>
       </div>
-      <div class="arrow">›</div>
-    </div>
 
-    <div class="card" onclick="openGPT('Crea copies para redes sociales de DCO LABB para Instagram y TikTok.')">
-      <div class="icon-wrap purple-box">✍️</div>
-      <div class="card-text">
-        <div class="card-title">Copies Redes</div>
-        <div class="card-desc">Textos para Instagram, TikTok y promociones</div>
+      <div class="card" onclick="openGPT('Necesito responder un DM de Instagram con el tono de DCO LABB. Ayúdame a redactarlo.')">
+        <div class="icon-wrap pink-box">📱</div>
+        <div class="card-text">
+          <div class="card-title">DMs Instagram</div>
+          <div class="card-desc">Responde mensajes con el tono de DCO LABB</div>
+        </div>
+        <div class="arrow">›</div>
       </div>
-      <div class="arrow">›</div>
-    </div>
 
-    <div class="card" onclick="openGPT('Quiero hacer seguimiento de clientes, pedidos y leads. Ayúdame a organizarlo.')">
-      <div class="icon-wrap blue-box">👥</div>
-      <div class="card-text">
-        <div class="card-title">Seguimiento</div>
-        <div class="card-desc">Seguimiento de clientes, pedidos y oportunidades</div>
+      <div class="card" onclick="openGPT('Quiero controlar inventario y stock de piezas. Ayúdame a organizarlo.')">
+        <div class="icon-wrap green-box">📦</div>
+        <div class="card-text">
+          <div class="card-title">Inventario</div>
+          <div class="card-desc">Controla stock y materiales del taller</div>
+        </div>
+        <div class="arrow">›</div>
       </div>
-      <div class="arrow">›</div>
+
+      <div class="card" onclick="openGPT('Crea copies para redes sociales de DCO LABB para Instagram y TikTok.')">
+        <div class="icon-wrap purple-box">✍️</div>
+        <div class="card-text">
+          <div class="card-title">Copies Redes</div>
+          <div class="card-desc">Textos para Instagram, TikTok y promociones</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="card" onclick="openGPT('Quiero hacer seguimiento de clientes, pedidos y leads. Ayúdame a organizarlo.')">
+        <div class="icon-wrap blue-box">👥</div>
+        <div class="card-text">
+          <div class="card-title">Seguimiento</div>
+          <div class="card-desc">Seguimiento de clientes, pedidos y oportunidades</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="install-box">
+        Para usarlo como app en Android, añádelo a tu pantalla de inicio.
+        <button id="installBtn" class="install-btn">Instalar app</button>
+      </div>
+
+      <div class="footer">
+        DCO LABB S.L.
+      </div>
     </div>
 
-    <div class="install-box">
-      Para usarlo como app en Android, añádelo a tu pantalla de inicio.
-      <button id="installBtn" class="install-btn">Instalar app</button>
+    <!-- PRESUPUESTOS -->
+    <div id="presupuestosScreen" class="hidden">
+      <div class="topbar">
+        <div class="brand-mini">DCO LABB</div>
+        <div class="badge">PRESUPUESTOS</div>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('homeScreen')">← Volver</button>
+
+      <div class="screen-title">Selecciona el tipo de presupuesto</div>
+      <div class="screen-subtitle">Elige la categoría con la que quieres trabajar.</div>
+
+      <div class="card" onclick="showScreen('mueblesScreen')">
+        <div class="icon-wrap gold-box">🪵</div>
+        <div class="card-text">
+          <div class="card-title">Muebles a medida</div>
+          <div class="card-desc">Configura mesas personalizadas paso a paso</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="card" onclick="openGPT('Quiero preparar un presupuesto para un cuadro epoxi de DCO LABB. Hazme preguntas sobre medidas, colores, diseño, acabado y entrega para redactar un presupuesto profesional.')">
+        <div class="icon-wrap pink-box">🎨</div>
+        <div class="card-text">
+          <div class="card-title">Cuadros epoxi</div>
+          <div class="card-desc">Presupuestos para piezas decorativas personalizadas</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="card" onclick="openGPT('Quiero preparar un presupuesto para un trabajo de carpintería de DCO LABB. Hazme preguntas sobre tipo de trabajo, medidas, materiales, mano de obra, transporte y plazo para crear un presupuesto profesional.')">
+        <div class="icon-wrap green-box">🔨</div>
+        <div class="card-text">
+          <div class="card-title">Trabajos de carpintería</div>
+          <div class="card-desc">Reparaciones y proyectos personalizados</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
     </div>
 
-    <div class="footer">
-      DCO LABB S.L.
+    <!-- MUEBLES -->
+    <div id="mueblesScreen" class="hidden">
+      <div class="topbar">
+        <div class="brand-mini">DCO LABB</div>
+        <div class="badge">MUEBLES</div>
+      </div>
+
+      <button class="back-btn" onclick="showScreen('presupuestosScreen')">← Volver</button>
+
+      <div class="screen-title">¿Qué tipo de mesa necesitas?</div>
+      <div class="screen-subtitle">Selecciona el tipo de mesa para generar el presupuesto guiado.</div>
+
+      <div class="card" onclick="openGPT('Quiero hacer un presupuesto profesional para una mesa de comedor de DCO LABB. Guíame paso a paso preguntándome tipo de mesa, medidas, material del tablero, soporte o patas, acabados, transporte y plazo. Los materiales posibles del tablero son madera, microcemento, epoxi y roca artificial. Los soportes pueden ser madera, metálico o roca artificial.')">
+        <div class="icon-wrap gold-box">🍽️</div>
+        <div class="card-text">
+          <div class="card-title">Mesa de comedor</div>
+          <div class="card-desc">Presupuesto guiado para mesas de comedor personalizadas</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="card" onclick="openGPT('Quiero hacer un presupuesto profesional para una mesa de centro de DCO LABB. Guíame paso a paso preguntándome tipo de mesa, medidas, material del tablero, soporte o patas, acabados, transporte y plazo. Los materiales posibles del tablero son madera, microcemento, epoxi y roca artificial. Los soportes pueden ser madera, metálico o roca artificial.')">
+        <div class="icon-wrap purple-box">☕</div>
+        <div class="card-text">
+          <div class="card-title">Mesa de centro</div>
+          <div class="card-desc">Presupuesto guiado para mesas de centro a medida</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="card" onclick="openGPT('Quiero hacer un presupuesto profesional para una mesita de noche de DCO LABB. Guíame paso a paso preguntándome tipo de mesa, medidas, material del tablero, soporte o patas, acabados, transporte y plazo. Los materiales posibles del tablero son madera, microcemento, epoxi y roca artificial. Los soportes pueden ser madera, metálico o roca artificial.')">
+        <div class="icon-wrap blue-box">🛏️</div>
+        <div class="card-text">
+          <div class="card-title">Mesita de noche</div>
+          <div class="card-desc">Presupuesto guiado para mesitas de noche personalizadas</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
     </div>
+
   </div>
 
   <script>
@@ -272,6 +387,15 @@
       const base = "https://chatgpt.com/g/g-69d2593629108191a34194b79c907a62-dco-eavv";
       const url = base + "?q=" + encodeURIComponent(texto);
       window.location.href = url;
+    }
+
+    function showScreen(screenId) {
+      const screens = ['homeScreen', 'presupuestosScreen', 'mueblesScreen'];
+      screens.forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(screenId).classList.remove('hidden');
+      window.scrollTo(0, 0);
     }
 
     if ('serviceWorker' in navigator) {
